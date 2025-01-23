@@ -29,7 +29,6 @@
 <script setup>
 import { reactive } from "vue";
 
-// Liste des liens avec leur état de survol
 const links = reactive([
   { name: "Home", isHovered: false,l:"/" },
   { name: "My Projects", isHovered: false,l:"/projects" },
@@ -45,7 +44,7 @@ const links = reactive([
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
-  color: aliceblue;
   font-weight: bold;
+  transition: ease-in-out 0.5s;
 }
 </style>
