@@ -1,13 +1,14 @@
 <template>
-  <h1>
-    You did it!
-  </h1>
-
+  <NavHeader />
 </template>
 
 
 <script setup>
 
+
+
+
+import NavHeader from "@/components/partials/NavHeader.vue";
 </script>
 
 
