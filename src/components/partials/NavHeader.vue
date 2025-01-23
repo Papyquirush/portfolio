@@ -50,10 +50,8 @@
 </template>
 
 <script setup>
-import {reactive, ref} from "vue";
-import {useI18n} from 'vue-i18n';
-
-const {locale} = useI18n();
+import { reactive, ref } from "vue";
+import { i18n, locale } from '@/i18n';
 
 const links = reactive([
   {name: "home", isHovered: false, l: "/", icon: "home"},
@@ -65,8 +63,9 @@ const links = reactive([
 ]);
 
 function changeLanguage() {
-  locale.value = locale.value === 'en' ? 'fr' : 'en';
-  console.log(locale.value);
+  const newLocale = locale.value === 'en' ? 'fr' : 'en';
+  locale.value = newLocale;
+  i18n.global.locale = newLocale;
 }
 
 const isMenuOpen = ref(false);
