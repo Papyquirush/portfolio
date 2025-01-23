@@ -1,5 +1,6 @@
 <template>
   <NavHeader />
+  <Footer />
 </template>
 
 
@@ -9,6 +10,7 @@
 
 
 import NavHeader from "@/components/partials/NavHeader.vue";
+import Footer from "@/components/partials/Footer.vue";
 </script>
 
 
