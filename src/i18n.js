@@ -1,4 +1,5 @@
 import { createI18n } from 'vue-i18n';
+import { ref } from 'vue';
 
 const messages = {
     en: {
@@ -26,4 +27,6 @@ const i18n = createI18n({
     messages,
 });
 
-export default i18n;
+const locale = ref(i18n.global.locale);
+
+export { i18n, locale };

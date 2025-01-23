@@ -1,43 +1,26 @@
 <template>
-  <NavHeader />
+  <div class="app-container">
+    <NavHeader />
+    <main class="content">
+
+    </main>
+    <Footer />
+  </div>
 </template>
 
-
 <script setup>
-
-
-
-
 import NavHeader from "@/components/partials/NavHeader.vue";
+import Footer from "@/components/partials/Footer.vue";
 </script>
 
-
-
 <style scoped>
-header {
-  line-height: 1.5;
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.content {
+  flex: 1;
 }
 </style>
