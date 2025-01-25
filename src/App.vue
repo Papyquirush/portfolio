@@ -1,8 +1,8 @@
 <template>
-  <div class="app-container">
+  <div id="app">
     <NavHeader />
     <main class="content">
-
+      <router-view />
     </main>
     <Footer />
   </div>
@@ -14,7 +14,10 @@ import Footer from "@/components/partials/Footer.vue";
 </script>
 
 <style scoped>
-.app-container {
+
+
+
+#app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -23,4 +26,7 @@ import Footer from "@/components/partials/Footer.vue";
 .content {
   flex: 1;
 }
+
+
 </style>
+
