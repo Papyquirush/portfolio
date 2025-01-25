@@ -21,11 +21,12 @@
                 :href="link.l"
                 class="w-full text-gray-300 mr-4 flex items-center"
             >
-              <i :class="`fas fa-${link.icon} mr-2`"></i>
+              <i :class="['fas', `fa-${link.icon}`, 'mr-2', { 'text-white': link.isHovered }]"></i>
               <span
                   @mouseover="link.isHovered = true"
                   @mouseleave="link.isHovered = false"
-                  :class="{ navLink: link.isHovered }"
+                  class="nav-link relative"
+                  :class="{'text-white': link.isHovered}"
               >
                 {{ $t(link.name) }}
               </span>
@@ -76,15 +77,23 @@ function toggleMenu() {
 </script>
 
 <style scoped>
-.navLink {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
-  font-weight: bold;
-  transition: ease-in-out 0.3s;
+.nav-link {
+  position: relative;
 }
 
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
 
-
-
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
 </style>
