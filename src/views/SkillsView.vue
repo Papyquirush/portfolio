@@ -1,6 +1,5 @@
 <script setup>
 import * as THREE from 'three';
-import { Text } from 'troika-three-text';
 import { ref, onMounted, onUnmounted } from 'vue';
 import gsap from 'gsap';
 
@@ -10,7 +9,7 @@ const skillDetailsRef = ref(null);
 onMounted(() => {
   const sizes = { width: window.innerWidth, height: window.innerHeight };
 
-  // Scene configuration with more depth
+  // Scene configuration
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x0a0a1a);
 
@@ -19,170 +18,53 @@ onMounted(() => {
 
   const renderer = new THREE.WebGLRenderer({
     canvas: canvasRef.value,
-    antialias: true
+    antialias: true,
   });
   renderer.setSize(sizes.width, sizes.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  // Galactic Background
-  const createGalaxyBackground = () => {
-    const starsGeometry = new THREE.BufferGeometry();
-    const starsCount = 10000;
-    const posArray = new Float32Array(starsCount * 3);
+  // Create planets
+  const textureLoader = new THREE.TextureLoader();
 
-    for(let i = 0; i < starsCount * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * 200;
-    }
+  const createPlanet = (texturePath, position) => {
+    const texture = textureLoader.load(texturePath);
+    const bumpMap = textureLoader.load(texturePath); // Optionnel, pour le relief.
 
-    starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const starsMaterial = new THREE.PointsMaterial({
-      color: 0xffffff,
-      size: 0.1,
-      transparent: true,
-      blending: THREE.AdditiveBlending
-    });
-
-    const starField = new THREE.Points(starsGeometry, starsMaterial);
-    scene.add(starField);
-  };
-  createGalaxyBackground();
-
-  // Detailed Skills Data
-  const skillsData = {
-    Frontend: {
-      color: 0x3498db,
-      skills: [
-        {
-          name: 'JavaScript',
-          level: 90,
-          description: 'Expertise in modern JavaScript, including ES6+ features and functional programming',
-          projects: ['Complex web applications', 'Interactive data visualizations']
-        },
-        {
-          name: 'Vue.js',
-          level: 85,
-          description: 'Advanced Vue.js development with Vuex and Vue Router',
-          projects: ['Single Page Applications', 'Component-based architectures']
-        },
-        {
-          name: 'Tailwind CSS',
-          level: 80,
-          description: 'Proficient in utility-first CSS framework',
-          projects: ['Responsive design', 'Custom design systems']
-        }
-      ]
-    },
-    Backend: {
-      color: 0xe74c3c,
-      skills: [
-        {
-          name: 'PHP',
-          level: 87,
-          description: 'Server-side development with modern PHP frameworks',
-          projects: ['Enterprise applications', 'RESTful API design']
-        },
-        {
-          name: 'Symfony',
-          level: 82,
-          description: 'Advanced Symfony framework development',
-          projects: ['Complex backend systems', 'Microservices']
-        },
-        {
-          name: 'MySQL',
-          level: 85,
-          description: 'Database design and optimization',
-          projects: ['High-performance databases', 'Complex query optimization']
-        }
-      ]
-    },
-    Tools: {
-      color: 0x2ecc71,
-      skills: [
-        {
-          name: 'Docker',
-          level: 80,
-          description: 'Containerization and deployment expertise',
-          projects: ['Microservices architecture', 'Continuous integration']
-        },
-        {
-          name: 'GitHub',
-          level: 90,
-          description: 'Version control and collaborative development',
-          projects: ['Open source contributions', 'Team workflow management']
-        },
-        {
-          name: 'VS Code',
-          level: 95,
-          description: 'Advanced IDE usage and extension development',
-          projects: ['Custom development environments', 'Productivity tools']
-        }
-      ]
-    }
-  };
-
-  // Planets Creation
-  const createPlanet = (color, position) => {
     const planet = new THREE.Mesh(
         new THREE.SphereGeometry(1.5, 64, 64),
         new THREE.MeshStandardMaterial({
-          color: color,
-          emissive: color,
-          emissiveIntensity: 0.3
+          map: texture,
+          bumpMap: bumpMap,
+          bumpScale: 0.1,
+          emissive: 0x000000,
+          roughness: 0.9,
+          metalness: 0.1,
         })
     );
+
     planet.position.copy(position);
     scene.add(planet);
     return planet;
   };
 
+// Exemple d'utilisation
   const planets = {
-    Frontend: createPlanet(skillsData.Frontend.color, new THREE.Vector3(-6, 0, 0)),
-    Backend: createPlanet(skillsData.Backend.color, new THREE.Vector3(0, 6, 0)),
-    Tools: createPlanet(skillsData.Tools.color, new THREE.Vector3(6, 0, 0))
+    Earth: createPlanet('/textures/earth.jpg', new THREE.Vector3(-6, 0, 0)),
+    Mars: createPlanet('/textures/mars.jpg', new THREE.Vector3(0, 6, 0)),
+    Jupiter: createPlanet('/textures/jupiter.jpg', new THREE.Vector3(6, 0, 0)),
   };
 
-  // Create Skills Stars
-  const createSkillStars = (planetPosition, skills, color) => {
-    const skillStarsGroup = new THREE.Group();
-    const radius = 4;
 
-    skills.forEach((skill, index) => {
-      const angle = (index / skills.length) * Math.PI * 2;
-
-      // Skill Star
-      const skillStar = new THREE.Mesh(
-          new THREE.SphereGeometry(0.2, 16, 16),
-          new THREE.MeshStandardMaterial({
-            color: color,
-            emissive: color,
-            emissiveIntensity: 0.5
-          })
-      );
-
-      skillStar.position.set(
-          planetPosition.x + radius * Math.cos(angle),
-          planetPosition.y + radius * Math.sin(angle),
-          planetPosition.z
-      );
-
-      // Custom data attachment
-      skillStar.userData = skill;
-
-      skillStarsGroup.add(skillStar);
-    });
-
-    scene.add(skillStarsGroup);
-    return skillStarsGroup;
-  };
-
-  const skillStars = {
-    Frontend: createSkillStars(planets.Frontend.position, skillsData.Frontend.skills, skillsData.Frontend.color),
-    Backend: createSkillStars(planets.Backend.position, skillsData.Backend.skills, skillsData.Backend.color),
-    Tools: createSkillStars(planets.Tools.position, skillsData.Tools.skills, skillsData.Tools.color)
-  };
-
-  // Hide skill stars initially
-  Object.values(skillStars).forEach(group => group.visible = false);
+  // Add stars background
+  const starsGeometry = new THREE.BufferGeometry();
+  const starPositions = new Float32Array(10000 * 3);
+  for (let i = 0; i < 10000 * 3; i++) {
+    starPositions[i] = (Math.random() - 0.5) * 200;
+  }
+  starsGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+  const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 });
+  const stars = new THREE.Points(starsGeometry, starsMaterial);
+  scene.add(stars);
 
   // Lighting
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -191,74 +73,97 @@ onMounted(() => {
   directionalLight.position.set(5, 5, 5);
   scene.add(directionalLight);
 
-  // Interaction Setup
+  // Interaction setup
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
 
-  const showSkillDetails = (skill) => {
+  const showSkillDetails = (planetName) => {
+    const details = {
+      Frontend: 'Frontend development with Vue, Tailwind, and JavaScript.',
+      Backend: 'Backend expertise in PHP, Symfony, and MySQL.',
+      Tools: 'Tools like Docker, GitHub, and VS Code for development.',
+    };
+
     if (skillDetailsRef.value) {
       skillDetailsRef.value.innerHTML = `
-        <h2>${skill.name}</h2>
-        <p>Level: ${skill.level}%</p>
-        <p>${skill.description}</p>
-        <h3>Notable Projects:</h3>
-        <ul>
-          ${skill.projects.map(project => `<li>${project}</li>`).join('')}
-        </ul>
+        <div class="skill-details-header">
+          <button class="close-skill-details">&times;</button>
+          <h2>${planetName}</h2>
+        </div>
+        <p>${details[planetName]}</p>
       `;
       skillDetailsRef.value.style.display = 'block';
+
+      const closeButton = skillDetailsRef.value.querySelector('.close-skill-details');
+      if (closeButton) {
+        closeButton.addEventListener('click', () => {
+          skillDetailsRef.value.style.display = 'none';
+        });
+      }
     }
   };
 
-  const onDocumentMouseDown = (event) => {
+  const hoverEffect = (intersectedObject) => {
+    Object.values(planets).forEach((planet) => {
+      if (planet === intersectedObject) {
+        // Augmente l'intensité émissive pour la planète survolée
+        gsap.to(planet.material, {
+          emissiveIntensity: 1.5, // Augmente la luminosité
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      } else {
+        // Réinitialise les autres planètes
+        gsap.to(planet.material, {
+          emissiveIntensity: 0.3, // Luminosité par défaut
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      }
+    });
+  };
+
+  const onDocumentMouseMove = (event) => {
     mouse.x = (event.clientX / sizes.width) * 2 - 1;
     mouse.y = -(event.clientY / sizes.height) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(Object.values(planets), true);
 
-    // Check planet intersections first
-    const planetIntersects = raycaster.intersectObjects(Object.values(planets));
-    const skillStarIntersects = raycaster.intersectObjects(
-        Object.values(skillStars).flatMap(group => group.children)
-    );
+    if (intersects.length > 0) {
+      const target = intersects[0].object.isMesh
+          ? intersects[0].object
+          : intersects[0].object.parent;
 
-    // Reset all skill stars visibility
-    Object.values(skillStars).forEach(group => group.visible = false);
+      if (target) {
+        document.body.style.cursor = "pointer";
+        hoverEffect(target);
+      }
+    } else {
+      document.body.style.cursor = "default";
+      hoverEffect(null);
+    }
+  };
 
-    if (planetIntersects.length > 0) {
-      const target = planetIntersects[0].object;
-      const planetName = Object.keys(planets).find(key => planets[key] === target);
 
-      // Zoom to planet
+  const onDocumentMouseDown = () => {
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(Object.values(planets));
+
+    if (intersects.length > 0) {
+      const selectedPlanet = intersects[0].object;
+      const planetName = Object.keys(planets).find((key) => planets[key] === selectedPlanet);
+
       gsap.to(camera.position, {
-        x: target.position.x,
-        y: target.position.y,
-        z: target.position.z + 5,
+        x: selectedPlanet.position.x,
+        y: selectedPlanet.position.y,
+        z: selectedPlanet.position.z + 5,
         duration: 1,
-        onUpdate: () => camera.lookAt(target.position),
+        onUpdate: () => camera.lookAt(selectedPlanet.position),
       });
 
-      // Show corresponding skill stars
-      if (skillStars[planetName]) {
-        skillStars[planetName].visible = true;
-        skillStars[planetName].children.forEach((star, index) => {
-          gsap.fromTo(star.position,
-              { z: star.position.z - 5 },
-              {
-                z: star.position.z,
-                duration: 1,
-                delay: index * 0.2,
-                ease: "elastic.out(1, 0.3)"
-              }
-          );
-        });
-      }
-    } else if (skillStarIntersects.length > 0) {
-      // Show skill details when skill star is clicked
-      const skillStar = skillStarIntersects[0].object;
-      showSkillDetails(skillStar.userData);
+      showSkillDetails(planetName);
     } else {
-      // Reset camera
       gsap.to(camera.position, {
         x: 0,
         y: 0,
@@ -266,41 +171,32 @@ onMounted(() => {
         duration: 1,
         onUpdate: () => camera.lookAt(0, 0, 0),
       });
-
-      // Hide skill details
-      if (skillDetailsRef.value) {
-        skillDetailsRef.value.style.display = 'none';
-      }
     }
   };
 
+  window.addEventListener('mousemove', onDocumentMouseMove);
   window.addEventListener('mousedown', onDocumentMouseDown);
 
-  // Animation Loop
   const tick = () => {
-    Object.values(planets).forEach(planet => {
+    Object.values(planets).forEach((planet) => {
       planet.rotation.y += 0.005;
     });
-
     renderer.render(scene, camera);
     requestAnimationFrame(tick);
   };
   tick();
 
-  // Resize Handling
-  const onResize = () => {
+  window.addEventListener('resize', () => {
     sizes.width = window.innerWidth;
     sizes.height = window.innerHeight;
     camera.aspect = sizes.width / sizes.height;
     camera.updateProjectionMatrix();
     renderer.setSize(sizes.width, sizes.height);
-  };
-  window.addEventListener('resize', onResize);
+  });
 
-  // Cleanup
   onUnmounted(() => {
+    window.removeEventListener('mousemove', onDocumentMouseMove);
     window.removeEventListener('mousedown', onDocumentMouseDown);
-    window.removeEventListener('resize', onResize);
   });
 });
 </script>
@@ -328,22 +224,40 @@ canvas {
 
 .skill-details {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: rgba(0, 0, 0, 0.7);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 20px;
   border-radius: 10px;
   max-width: 300px;
   display: none;
+  z-index: 100;
+}
+
+.skill-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .skill-details h2 {
-  margin-top: 0;
+  margin: 0;
   color: #4ecdc4;
 }
 
-.skill-details ul {
-  padding-left: 20px;
+.close-skill-details {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.close-skill-details:hover {
+  color: #ff4500;
 }
 </style>
