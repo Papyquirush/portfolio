@@ -1,15 +1,100 @@
+<template>
+  <div>
+    <div v-if="!showGalaxy" class="welcome-screen">
+      <button class="see-skills-button" @click="displayGalaxy">See My Skills</button>
+    </div>
+    
+    <div ref="popupRef" class="popup">Press ESC to exit full screen</div>
+    
+    <div v-show="showGalaxy" class="portfolio-galaxy">
+      <canvas ref="canvasRef"></canvas>
+      <div ref="skillDetailsRef" class="skill-details"></div>
+    </div>
+  </div>
+</template>
+
 <script setup>
-import * as THREE from 'three';
 import { ref, onMounted, onUnmounted } from 'vue';
+import * as THREE from 'three';
 import gsap from 'gsap';
 
 const canvasRef = ref(null);
 const skillDetailsRef = ref(null);
+const popupRef = ref(null);
+
+const showGalaxy = ref(false);
+
+const showPopup = () => {
+  if (popupRef.value) {
+    popupRef.value.style.visibility = 'visible';
+    popupRef.value.style.opacity = '1';
+
+    setTimeout(() => {
+      if (popupRef.value) {
+        popupRef.value.style.opacity = '0';
+        setTimeout(() => {
+          if (popupRef.value) {
+            popupRef.value.style.visibility = 'hidden';
+          }
+        }, 500);
+      }
+    }, 3000);
+  }
+};
+
+
+const displayGalaxy = () => {
+  console.log('Bouton cliqué : affichage de la galaxie...');
+  showGalaxy.value = true;
+
+  const galaxyElement = document.querySelector('.portfolio-galaxy');
+  if (galaxyElement) {
+    console.log('Mise à jour de la visibilité...');
+    galaxyElement.style.visibility = 'visible';
+  }
+
+  gsap.to('.portfolio-galaxy', {
+    opacity: 1,
+    duration: 1,
+    ease: 'power2.out',
+    onComplete: () => console.log('Animation terminée.'),
+  });
+
+  showPopup();
+};
+
+const hideGalaxy = () => {
+  console.log('Touche Échap pressée : masquage de la galaxie...');
+  showGalaxy.value = false;
+
+  const galaxyElement = document.querySelector('.portfolio-galaxy');
+  if (galaxyElement) {
+    gsap.to('.portfolio-galaxy', {
+      opacity: 0,
+      duration: 1,
+      ease: 'power2.out',
+      onComplete: () => {
+        galaxyElement.style.visibility = 'hidden';
+      },
+    });
+  }
+};
 
 onMounted(() => {
-  const sizes = { width: window.innerWidth, height: window.innerHeight };
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape' && showGalaxy.value) {
+      hideGalaxy();
+    }
+  };
 
-  // Scene configuration
+  window.addEventListener('keydown', handleKeyDown);
+
+  onUnmounted(() => {
+    window.removeEventListener('keydown', handleKeyDown);
+  });
+
+  const sizes = {width: window.innerWidth, height: window.innerHeight};
+
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x0a0a1a);
 
@@ -23,12 +108,12 @@ onMounted(() => {
   renderer.setSize(sizes.width, sizes.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  // Create planets
+
   const textureLoader = new THREE.TextureLoader();
 
   const createPlanet = (texturePath, position) => {
     const texture = textureLoader.load(texturePath);
-    const bumpMap = textureLoader.load(texturePath); // Optionnel, pour le relief.
+    const bumpMap = textureLoader.load(texturePath);
 
     const planet = new THREE.Mesh(
         new THREE.SphereGeometry(1.5, 64, 64),
@@ -47,15 +132,13 @@ onMounted(() => {
     return planet;
   };
 
-// Exemple d'utilisation
   const planets = {
-    Earth: createPlanet('/textures/earth.jpg', new THREE.Vector3(-6, 0, 0)),
-    Mars: createPlanet('/textures/mars.jpg', new THREE.Vector3(0, 6, 0)),
-    Jupiter: createPlanet('/textures/jupiter.jpg', new THREE.Vector3(6, 0, 0)),
+    Frontend: createPlanet('/textures/earth.jpg', new THREE.Vector3(-6, 0, 0)),
+    Backend: createPlanet('/textures/mars.jpg', new THREE.Vector3(0, 6, 0)),
+    Tools: createPlanet('/textures/jupiter.jpg', new THREE.Vector3(6, 0, 0)),
   };
 
 
-  // Add stars background
   const starsGeometry = new THREE.BufferGeometry();
   const starPositions = new Float32Array(10000 * 3);
   for (let i = 0; i < 10000 * 3; i++) {
@@ -66,31 +149,35 @@ onMounted(() => {
   const stars = new THREE.Points(starsGeometry, starsMaterial);
   scene.add(stars);
 
-  // Lighting
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(ambientLight);
   const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
   directionalLight.position.set(5, 5, 5);
   scene.add(directionalLight);
 
-  // Interaction setup
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
 
-  const showSkillDetails = (planetName) => {
+  const showSkillDetails = (skill) => {
     const details = {
-      Frontend: 'Frontend development with Vue, Tailwind, and JavaScript.',
-      Backend: 'Backend expertise in PHP, Symfony, and MySQL.',
-      Tools: 'Tools like Docker, GitHub, and VS Code for development.',
+      Vue: 'Expert in Vue.js framework.',
+      Tailwind: 'Proficient in Tailwind CSS.',
+      JavaScript: 'Advanced JavaScript knowledge.',
+      PHP: 'Experienced in PHP development.',
+      Symfony: 'Skilled in Symfony framework.',
+      MySQL: 'Proficient in MySQL database management.',
+      Docker: 'Experienced with Docker containers.',
+      GitHub: 'Proficient in version control with GitHub.',
+      VSCode: 'Skilled in using VS Code for development.',
     };
 
     if (skillDetailsRef.value) {
       skillDetailsRef.value.innerHTML = `
         <div class="skill-details-header">
           <button class="close-skill-details">&times;</button>
-          <h2>${planetName}</h2>
+          <h2>${skill}</h2>
         </div>
-        <p>${details[planetName]}</p>
+        <p>${details[skill]}</p>
       `;
       skillDetailsRef.value.style.display = 'block';
 
@@ -103,19 +190,40 @@ onMounted(() => {
     }
   };
 
+  const createStarsAroundPlanet = (planet, skills) => {
+    const starGeometry = new THREE.SphereGeometry(0.1, 16, 16);
+    const starMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+    skills.forEach((skill, index) => {
+      const star = new THREE.Mesh(starGeometry, starMaterial);
+      const angle = (index / skills.length) * Math.PI * 2;
+      const radius = 3;
+      star.position.set(
+          planet.position.x + Math.cos(angle) * radius,
+          planet.position.y + Math.sin(angle) * radius,
+          planet.position.z
+      );
+      scene.add(star);
+
+      star.userData = { skill };
+
+      star.addEventListener('click', () => {
+        showSkillDetails(skill);
+      });
+    });
+  };
+
   const hoverEffect = (intersectedObject) => {
     Object.values(planets).forEach((planet) => {
       if (planet === intersectedObject) {
-        // Augmente l'intensité émissive pour la planète survolée
         gsap.to(planet.material, {
-          emissiveIntensity: 1.5, // Augmente la luminosité
+          emissiveIntensity: 1.5,
           duration: 0.3,
           ease: "power2.out",
         });
       } else {
-        // Réinitialise les autres planètes
         gsap.to(planet.material, {
-          emissiveIntensity: 0.3, // Luminosité par défaut
+          emissiveIntensity: 0.3,
           duration: 0.3,
           ease: "power2.out",
         });
@@ -145,32 +253,45 @@ onMounted(() => {
     }
   };
 
-
   const onDocumentMouseDown = () => {
     raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(Object.values(planets));
+    const intersects = raycaster.intersectObjects(scene.children, true);
 
     if (intersects.length > 0) {
-      const selectedPlanet = intersects[0].object;
-      const planetName = Object.keys(planets).find((key) => planets[key] === selectedPlanet);
+      const selectedObject = intersects[0].object;
 
-      gsap.to(camera.position, {
-        x: selectedPlanet.position.x,
-        y: selectedPlanet.position.y,
-        z: selectedPlanet.position.z + 5,
-        duration: 1,
-        onUpdate: () => camera.lookAt(selectedPlanet.position),
-      });
+      if (selectedObject.userData?.skill) {
+        showSkillDetails(selectedObject.userData.skill);
+      } else {
+        const selectedPlanet = Object.values(planets).find((planet) => planet === selectedObject);
+        if (selectedPlanet) {
+          const planetName = Object.keys(planets).find((key) => planets[key] === selectedPlanet);
 
-      showSkillDetails(planetName);
-    } else {
-      gsap.to(camera.position, {
-        x: 0,
-        y: 0,
-        z: 20,
-        duration: 1,
-        onUpdate: () => camera.lookAt(0, 0, 0),
-      });
+          gsap.to(camera.position, {
+            x: selectedPlanet.position.x,
+            y: selectedPlanet.position.y,
+            z: selectedPlanet.position.z + 5,
+            duration: 1,
+            onUpdate: () => camera.lookAt(selectedPlanet.position),
+          });
+
+          const skills = {
+            Frontend: ['JavaScript', 'TypeScript', 'Vue.js', 'Tailwind CSS', 'Bootstrap', 'HTML', 'CSS'],
+            Backend: ['PHP', 'Symfony', 'CakePHP', 'Angular', 'MySQL', 'Java', 'C++'],
+            Tools: ['GitHub', 'GitLab', 'Docker', 'Talend', 'VS Code', 'JetBrains Tools', 'Android Studio', 'Postman', 'Office Suite', 'Inkscape', 'QT Creator',],
+          };
+
+          createStarsAroundPlanet(selectedPlanet, skills[planetName]);
+        } else {
+          gsap.to(camera.position, {
+            x: 0,
+            y: 0,
+            z: 20,
+            duration: 1,
+            onUpdate: () => camera.lookAt(0, 0, 0),
+          });
+        }
+      }
     }
   };
 
@@ -201,19 +322,47 @@ onMounted(() => {
 });
 </script>
 
-<template>
-  <div class="portfolio-galaxy">
-    <canvas ref="canvasRef"></canvas>
-    <div ref="skillDetailsRef" class="skill-details"></div>
-  </div>
-</template>
+
 
 <style scoped>
 body {
   margin: 0;
   overflow: hidden;
-  background-color: #0a0a1a;
   font-family: 'Arial', sans-serif;
+}
+
+.welcome-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0a0a1a;
+}
+
+.see-skills-button {
+  background-color: #4ecdc4;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.see-skills-button:hover {
+  background-color: #3ba89c;
+}
+
+.portfolio-galaxy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0; 
+  visibility: hidden; 
+  transition: opacity 1s ease;
 }
 
 canvas {
@@ -260,4 +409,21 @@ canvas {
 .close-skill-details:hover {
   color: #ff4500;
 }
+
+.popup {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  opacity: 0; 
+  visibility: hidden; 
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  z-index: 200;
+}
+
 </style>
