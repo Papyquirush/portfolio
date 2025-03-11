@@ -31,7 +31,7 @@
                 class="skill-logo"
             />
 
-            <h3 class="text-lg font-bold mt-2">{{ skill.name }}</h3>
+            <h3 class="text-lg font-bold mt-2">{{ $t(skill.name) }}</h3>
 
             <div class="progress-bar-container">
               <div

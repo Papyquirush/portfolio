@@ -13,6 +13,7 @@ const messages = {
         tools : 'Tools',
         backend : 'Backend',
         frontend : 'Frontend',
+        "Office Suite" : 'Office Suite',
     },
     fr: {
         home: 'Accueil',
@@ -22,7 +23,9 @@ const messages = {
         aboutMe: 'À propos de moi',
         contactMe: 'Contactez-moi',
         portfolio: 'Mon Portfolio',
-        tools : 'Outils'
+        tools : 'Outils',
+        "Office Suite" : 'Suite Office',
+
     }
 };
 
