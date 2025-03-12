@@ -9,7 +9,11 @@ const messages = {
         experiences: 'Experiences',
         aboutMe: 'About Me',
         contactMe: 'Contact Me',
-        portfolio: 'My Portfolio'
+        portfolio: 'My Portfolio',
+        tools : 'Tools',
+        backend : 'Backend',
+        frontend : 'Frontend',
+        "Office Suite" : 'Office Suite',
     },
     fr: {
         home: 'Accueil',
@@ -18,7 +22,10 @@ const messages = {
         experiences: 'Expériences',
         aboutMe: 'À propos de moi',
         contactMe: 'Contactez-moi',
-        portfolio: 'Mon Portfolio'
+        portfolio: 'Mon Portfolio',
+        tools : 'Outils',
+        "Office Suite" : 'Suite Office',
+
     }
 };
 
