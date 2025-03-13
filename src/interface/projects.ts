@@ -7,7 +7,7 @@ export const projects = {
             title: "Site de création de tournoi pour ALOAS",
             description: "Création d'un site web pour la gestion de tournois de sport pour les handicapés de l'association ALOAS",
             skills: skills.skills.filter(skill =>
-                ["PHP", "MySQL", "HTML", "CSS", "JavaScript", "Team"].includes(skill.name)
+                ["PHP", "MySQL", "CSS", "JavaScript", "Team"].includes(skill.name)
             )
         },
         {
@@ -31,7 +31,7 @@ export const projects = {
             title: "Site de roller coaster",
             description: "Création d'un site qui repertorie tous les roller coaster du monde sur une carte, les compares et d'avoir des statistiques sur chaque coaster",
             skills: skills.skills.filter(skill =>
-                ["MySQL", "Symfony", "Tailwind CSS", "TypeScript","API", "Team"].includes(skill.name)
+                ["MySQL", "Symfony","PHP", "Tailwind CSS", "TypeScript","API", "Team"].includes(skill.name)
             )
 
         },
@@ -40,7 +40,7 @@ export const projects = {
             title: "Site utilisant l'API de Spotify",
             description: "Création d'un site qui permet de mettre en favoris des sons et des artistes",
             skills: skills.skills.filter(skill =>
-                ["MySQL", "Symfony", "CSS", "API"].includes(skill.name)
+                ["MySQL","PHP", "Symfony", "CSS", "API"].includes(skill.name)
             )
         },
         {
