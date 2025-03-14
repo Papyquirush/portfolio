@@ -3,8 +3,7 @@
   RewriteBase /
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)$ dist/$1 [L]
+  RewriteRule ^(.*)$ /dist/index.html [L]
 </IfModule>
-
 
 DirectoryIndex dist/index.html
