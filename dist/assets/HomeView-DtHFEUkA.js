@@ -1,0 +1,1 @@
+import{_ as o,c as t,a as s,o as c}from"./index-TMiiynh1.js";const n={},a={class:"content"};function r(_,e){return c(),t("main",a,e[0]||(e[0]=[s("h1",null,"Home",-1)]))}const f=o(n,[["render",r],["__scopeId","data-v-1fb68cd8"]]);export{f as default};
