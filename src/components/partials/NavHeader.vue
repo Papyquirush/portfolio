@@ -13,13 +13,13 @@
             </svg>
           </button>
         </div>
-        <div :class="{'block': isMenuOpen, 'hidden': !isMenuOpen}" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div :class="{'block': isMenuOpen, 'hidden': !isMenuOpen}" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto transition-all duration-300 ease-in-out">
           <div class="text-sm lg:flex-grow flex flex-col lg:flex-row ml-20">
             <a
                 v-for="link in links"
                 :key="link.name"
                 :href="link.l"
-                class="w-full text-gray-300 mr-4 flex items-center"
+                class="w-full text-gray-300 mr-4 flex items-center hover:text-white transition-colors duration-300"
             >
               <i :class="['fas', `fa-${link.icon}`, 'mr-2', { 'text-white': link.isHovered }]"></i>
               <span
@@ -95,5 +95,11 @@ function toggleMenu() {
 .nav-link:hover::after {
   width: 100%;
   left: 0;
+}
+
+@media (max-width: 1024px) {
+  .nav-link {
+    padding: 10px 0;
+  }
 }
 </style>
