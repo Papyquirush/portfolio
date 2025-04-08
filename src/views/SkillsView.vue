@@ -1,15 +1,17 @@
 <template>
   <div class="p-10">
-    <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1  gap-6 mb-10">
-      <div
-          v-for="(category, index) in categories.category"
-          :key="index"
-          class="card"
+    <div class="flex border-b border-gray-200 mb-8">
+      <button
+          v-for="category in categories.category"
           @click="activeCategory = category.id"
+          class="px-6 py-3 font-medium"
+          :class="{
+      'text-indigo-600 border-b-2 border-indigo-600': activeCategory === category.id,
+      'text-gray-500 hover:text-gray-700': activeCategory !== category.id
+    }"
       >
-        <h2 class="text-xl font-bold">{{ $t(category.title) }}</h2>
-        <p class="text-gray-600">{{ category.description }}</p>
-      </div>
+        {{ $t(category.title) }}
+      </button>
     </div>
 
     <div v-for="(category, index) in categories.category" :key="index">
@@ -92,12 +94,12 @@ const getSkillLogo = (path) => {
 }
 
 .progress-bar {
-  @apply bg-blue-500 h-full rounded-full transition-all;
+  @apply bg-indigo-500 h-full rounded-full transition-all;
 }
 
 
 .skill-block:hover {
-  @apply bg-blue-100 scale-105;
+  @apply bg-indigo-100 scale-105;
 }
 
 

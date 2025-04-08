@@ -78,22 +78,6 @@ function toggleMenu() {
 
 <style scoped>
 .nav-link {
-  position: relative;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: white;
-  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
-}
-
-.nav-link:hover::after {
-  width: 100%;
-  left: 0;
+  @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-white after:w-0 after:transition-all hover:after:w-full;
 }
 </style>
