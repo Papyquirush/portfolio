@@ -2,7 +2,11 @@
   <div id="app">
     <NavHeader />
     <main class="content">
-      <router-view />
+      <RouterView v-slot="{ Component }">
+        <Suspense>
+          <component :is="Component" />
+        </Suspense>
+      </RouterView>
     </main>
     <Footer />
   </div>
@@ -21,6 +25,7 @@ import Footer from "@/components/partials/Footer.vue";
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: radial-gradient(circle at 10% 20%, #f5f7fa 0%, #e4e8f0 90%);
 }
 
 .content {
