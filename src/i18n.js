@@ -43,11 +43,11 @@ const messages = {
             skillsUsed: "Compétences utilisées",
             noProjects: "Aucun projet ne correspond aux filtres sélectionnés."
         },
-
     }
 };
 
 const i18n = createI18n({
+    legacy: false,
     locale: 'en',
     messages,
 });
