@@ -1,0 +1,33 @@
+name: Déploiement sur OVH via FTP
+
+on:
+  push:
+    branches:
+      - prod  # Déclenche le déploiement uniquement lors d'un push sur la branche "prod"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Utilise une machine virtuelle Ubuntu
+
+    steps:
+      # Étape 1 : Récupérer le code source
+      - name: Checkout du code
+        uses: actions/checkout@v3
+
+      # Étape 2 : Déployer sur OVH via FTP
+      - name: Déployer sur OVH via FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}  # Adresse du serveur FTP OVH
+          FTP_USER: ${{ secrets.FTP_USER }}  # Nom d'utilisateur FTP
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}  # Mot de passe FTP
+          FTP_DIR: ${{ secrets.FTP_DIR }}  # Répertoire de destination sur le serveur FTP (ex: /www)
+        run: |
+          sudo apt-get install -y lftp  # Installe lftp
+          lftp -e "
+            set ftp:ssl-allow true;
+            set ssl:verify-certificate false;
+            open $FTP_HOST;
+            user $FTP_USER '$FTP_PASSWORD';
+            mirror --reverse --delete --verbose dist/ $FTP_DIR;
+            bye;
+          "
