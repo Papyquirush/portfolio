@@ -13,13 +13,13 @@
             </svg>
           </button>
         </div>
-        <div :class="{'block': isMenuOpen, 'hidden': !isMenuOpen}" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div :class="{'block': isMenuOpen, 'hidden': !isMenuOpen}" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto transition-all duration-300 ease-in-out">
           <div class="text-sm lg:flex-grow flex flex-col lg:flex-row ml-20">
             <a
                 v-for="link in links"
                 :key="link.name"
                 :href="link.l"
-                class="w-full text-gray-300 mr-4 flex items-center"
+                class="w-full text-gray-300 mr-4 flex items-center hover:text-white transition-colors duration-300"
             >
               <i :class="['fas', `fa-${link.icon}`, 'mr-2', { 'text-white': link.isHovered }]"></i>
               <span
@@ -78,22 +78,12 @@ function toggleMenu() {
 
 <style scoped>
 .nav-link {
-  position: relative;
+  @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-white after:w-0 after:transition-all hover:after:w-full;
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: white;
-  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
-}
-
-.nav-link:hover::after {
-  width: 100%;
-  left: 0;
+@media (max-width: 1024px) {
+  .nav-link {
+    padding: 10px 0;
+  }
 }
 </style>
