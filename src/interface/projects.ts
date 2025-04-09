@@ -6,7 +6,7 @@ export const projects = {
             id: "tournois",
             title: "Site de création de tournoi pour ALOAS",
             description: "Création d'un site web pour la gestion de tournois de sport pour les handicapés de l'association ALOAS",
-            logo:"",
+            logo:"/logos/projects/aloas.png",
             skills: skills.skills.filter(skill =>
                 ["PHP", "MySQL", "CSS", "JavaScript", "Team"].includes(skill.name)
             )
@@ -24,7 +24,7 @@ export const projects = {
             id:"echec",
             title: "Site de jeu d'échec",
             description: "Création d'un site web pour jouer aux échecs",
-            logo:"",
+            logo:"/logos/projects/echec.png",
             skills: skills.skills.filter(skill =>
                 ["MySQL", "Vue.js", "Tailwind CSS", "TypeScript","API", "Team"].includes(skill.name)
             )
@@ -33,7 +33,7 @@ export const projects = {
             id:"coaster",
             title: "Site de roller coaster",
             description: "Création d'un site qui repertorie tous les roller coaster du monde sur une carte, les compares et d'avoir des statistiques sur chaque coaster",
-            logo:"",
+            logo:"/logos/projects/coaster.png",
             skills: skills.skills.filter(skill =>
                 ["MySQL", "Symfony","PHP", "Tailwind CSS", "TypeScript","API", "Team"].includes(skill.name)
             )
@@ -43,7 +43,7 @@ export const projects = {
             id:"spotify",
             title: "Site utilisant l'API de Spotify",
             description: "Création d'un site qui permet de mettre en favoris des sons et des artistes",
-            logo:"",
+            logo:"/logos/projects/spotify.png",
             skills: skills.skills.filter(skill =>
                 ["MySQL","PHP", "Symfony", "CSS", "API"].includes(skill.name)
             )
