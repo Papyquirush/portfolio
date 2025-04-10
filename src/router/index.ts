@@ -18,8 +18,14 @@ const router = createRouter({
           path: '/projects',
             name: 'ProjectsView',
             component: () => import('@/views/ProjectsView.vue')
-      }
-    ],
+      },
+      {
+          path: '/projects/:id',
+          name: 'ProjectDetail',
+          component: () => import('@/views/ProjectDetailView.vue')
+      },
+  ],
+
 });
 
 export default router
