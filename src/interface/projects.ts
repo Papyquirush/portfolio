@@ -82,22 +82,6 @@ export const projects = {
             )
         },
         {
-            id: "parcs",
-            title: "Application de repérage des parcs nationnaux",
-            description:
-                "Création d'une application qui permet de repérer les parcs nationnaux sur une carte et de les comparer",
-            logo: "",
-            context: "Application mobile développée dans le cadre d’un projet SIG sur mobile.",
-            contributions: [
-                "Sed ut perspiciatis unde omnis iste natus error sit.",
-                "Voluptatem accusantium doloremque laudantium.",
-                "Totam rem aperiam, eaque ipsa quae ab illo inventore.",
-            ],
-            skills: skills.skills.filter(skill =>
-                ["Android Studio", "Java", "API"].includes(skill.name)
-            )
-        },
-        {
             id: "portfolio",
             title: "Portfolio",
             description: "Création de mon portfolio",
