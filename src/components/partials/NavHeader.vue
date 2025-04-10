@@ -58,9 +58,7 @@ const links = reactive([
   {name: "home", isHovered: false, l: "/", icon: "home"},
   {name: "myProjects", isHovered: false, l: "/projects", icon: "project-diagram"},
   {name: "skills", isHovered: false, l: "/skills", icon: "tools"},
-  {name: "experiences", isHovered: false, l: "/experiences", icon: "briefcase"},
   {name: "aboutMe", isHovered: false, l: "/about", icon: "user"},
-  {name: "contactMe", isHovered: false, l: "/contact", icon: "envelope"},
 ]);
 
 function changeLanguage() {

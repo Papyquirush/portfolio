@@ -21,7 +21,14 @@ const messages = {
             allFilter: "All",
             viewProject: "View Project",
             skillsUsed: "Skills used",
-            noProjects: "No projects match the selected filters."
+            noProjects: "No projects match the selected filters.",
+            backToList: "Back to the list",
+            "context": "Context",
+            "description": "Description",
+            "myWork": "What I did",
+            "visitSite": "Visit website",
+            "notFound": "Project not found",
+            technologies: "Technologies",
         },
     },
     fr: {
@@ -41,7 +48,15 @@ const messages = {
             allFilter: "Tous",
             viewProject: "Voir le projet",
             skillsUsed: "Compétences utilisées",
-            noProjects: "Aucun projet ne correspond aux filtres sélectionnés."
+            noProjects: "Aucun projet ne correspond aux filtres sélectionnés.",
+            backToList: "Retour à la liste",
+            "context": "Contexte",
+            "description": "Description",
+            "myWork": "Ce que j’ai fait",
+            "visitSite": "Voir le site",
+            "notFound": "Projet introuvable",
+            technologies: "Technologies",
+
         },
     }
 };
