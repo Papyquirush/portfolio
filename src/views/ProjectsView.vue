@@ -74,8 +74,13 @@
           </div>
 
           <button class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium flex items-center group transition-colors">
-            {{ $t('projects.viewProject') }}
-            <span class="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+            <router-link
+                :to="{ name: 'ProjectDetail', params: { id: project.id } }"
+                class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium flex items-center group transition-colors"
+            >
+              {{ $t('projects.viewProject') }}
+              <span class="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+            </router-link>
           </button>
         </div>
       </div>
@@ -97,6 +102,22 @@
 import {ref, computed} from 'vue';
 import {projects} from '@/interface/projects';
 import {useI18n} from 'vue-i18n';
+
+import { onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+
+onMounted(() => {
+  const skillFromQuery = route.query.skill;
+  if (skillFromQuery) {
+    selectedSkills.value = [skillFromQuery];
+  }
+});
+
+
+
+
 
 const {t} = useI18n();
 

@@ -24,8 +24,14 @@
         <h2 class="text-2xl font-bold mb-6">{{ $t(category.title) }}</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <div v-for="(skill, i) in category.skills" :key="i" class="skill-block">
-            <img :src="getSkillLogo(skill.logo)" :alt="skill.name" class="skill-logo" />
+          <div
+              v-for="(skill, i) in category.skills"
+              :key="i"
+              class="skill-block"
+              @click="goToProjects(skill.name)"
+          >
+
+          <img :src="getSkillLogo(skill.logo)" :alt="skill.name" class="skill-logo" />
 
             <h3 class="text-lg font-bold mt-2">{{ $t(skill.name) }}</h3>
 
@@ -46,6 +52,16 @@
 <script setup>
 import { ref, nextTick } from 'vue';
 import { categories } from '@/interface/categories.ts';
+
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const goToProjects = (skillName) => {
+  router.push({ name: 'ProjectsView', query: { skill: skillName } });
+};
+
+
 
 const activeCategory = ref("backend");
 
