@@ -98,6 +98,22 @@ import {ref, computed} from 'vue';
 import {projects} from '@/interface/projects';
 import {useI18n} from 'vue-i18n';
 
+import { onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+
+onMounted(() => {
+  const skillFromQuery = route.query.skill;
+  if (skillFromQuery) {
+    selectedSkills.value = [skillFromQuery];
+  }
+});
+
+
+
+
+
 const {t} = useI18n();
 
 const selectedSkills = ref([]);
