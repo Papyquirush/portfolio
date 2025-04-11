@@ -28,24 +28,26 @@ export const projects = {
                 ]
         },
         {
-            id: "metiers",
-            title: "Site de présentation des métiers de la DGFIP",
-            description:
-                "Création d'un site web pour la présentation des métiers de la DGFIP",
+            id: "transchlor",
+            title: "Transchlor",
+            description: "Création d'une interface web pour l'application Transchlor",
             images: [
-                "/logos/projects/dgfip.png",
+                "/logos/projects/transchlor1.png",
+                "/logos/projects/transchlor2.png",
+                "/logos/projects/transchlor3.png",
             ],
-            context: "Ce projet a été réalisé dans le cadre de mon stage de deuxième année de BUT Informatique, au sein de la Direction Générale des Finances Publiques (DGFIP). L’objectif principal était de concevoir une application ludique, interactive et accessible, destinée à promouvoir les métiers de la DGFIP auprès des collégiens, lycéens ainsi que des nouveaux stagiaires et alternants. Dans un contexte de renouvellement générationnel et de besoin en attractivité, la DGFIP souhaite valoriser ses missions, ses valeurs, et les opportunités de carrière qu’elle propose. L’application vise donc à susciter l’intérêt des jeunes pour les métiers de la fonction publique, et plus particulièrement pour ceux de la DGFIP, à travers une approche pédagogique et immersive.",
+            context: "Transchlor est une application de simulation multiphysique du Transport des ions Chlorure dans les structures en béton armé (ponts, etc..), responsable de dégradations en fonction de l'exposition de l'ouvrage (données issues de capteurs ou expositions type : brouillard, soleil, montagne, mer, éclaboussures de voitures, eau stagnante etc..). Elle est utilisée pour prédire les dégradations au cours du temps (entre 20 et 30 ans) et prévoir les phases d'entretien et de réparation. L’objectif principal de ce travail est de recréer complètement l’interface en créant une interface web, de créer une base de données pour stocker les résultats des calculs et de pouvoir gérer différents utilisateurs. Notre travail n’est pas de finir ce projet mais de poser les bases pour que d’autres puissent reprendre et poursuivre ce projet sans tout recommencer.\n",
             contributions: [
-                "Recherche et compilation d'informations sur les différentes valeurs et métiers de la DGFIP.",
-                "Mise en place d'une interface dynamique et ludique pour la présentation des métiers.",
-                "Création de mini-jeux et quiz pour rendre l'apprentissage interactif.",
+                "Gestion de l'importation des fichiers météo et du remplissage automatique du formulaire",
+                "Gestion de la liaison entre symfony et l'API du projet VB",
+                "Création de la Base de Données",
+                "Gestion de l'enregistrement des calculs dans la Base de Données",
             ],
             skills: skills.skills.filter(skill =>
-                ["Angular", "TypeScript"].includes(skill.name)
+                ["MySQL", "Symfony", "Tailwind CSS", "PHP","API", "Team","Visual Basic"].includes(skill.name)
             ),
             links: [
-
+                "https://github.com/AntonRiviere/TransChlorWeb",
             ]
         },
         {
@@ -111,26 +113,25 @@ export const projects = {
             ]
         },
         {
-            id: "transchlor",
-            title: "Transchlor",
-            description: "Création d'une interface web pour l'application Transchlor",
+            id: "metiers",
+            title: "Site de présentation des métiers de la DGFIP",
+            description:
+                "Création d'un site web pour la présentation des métiers de la DGFIP",
             images: [
-                "/logos/projects/transchlor1.png",
-                "/logos/projects/transchlor2.png",
-                "/logos/projects/transchlor3.png",
+                "/logos/projects/dgfip.png",
             ],
-            context: "Transchlor est une application de simulation multiphysique du Transport des ions Chlorure dans les structures en béton armé (ponts, etc..), responsable de dégradations en fonction de l'exposition de l'ouvrage (données issues de capteurs ou expositions type : brouillard, soleil, montagne, mer, éclaboussures de voitures, eau stagnante etc..). Elle est utilisée pour prédire les dégradations au cours du temps (entre 20 et 30 ans) et prévoir les phases d'entretien et de réparation. L’objectif principal de ce travail est de recréer complètement l’interface en créant une interface web, de créer une base de données pour stocker les résultats des calculs et de pouvoir gérer différents utilisateurs. Notre travail n’est pas de finir ce projet mais de poser les bases pour que d’autres puissent reprendre et poursuivre ce projet sans tout recommencer.\n",
+            context: "Ce projet a été réalisé dans le cadre de mon stage de deuxième année de BUT Informatique, au sein de la Direction Générale des Finances Publiques (DGFIP). L’objectif principal était de concevoir une application ludique, interactive et accessible, destinée à promouvoir les métiers de la DGFIP auprès des collégiens, lycéens ainsi que des nouveaux stagiaires et alternants. Dans un contexte de renouvellement générationnel et de besoin en attractivité, la DGFIP souhaite valoriser ses missions, ses valeurs, et les opportunités de carrière qu’elle propose. L’application vise donc à susciter l’intérêt des jeunes pour les métiers de la fonction publique, et plus particulièrement pour ceux de la DGFIP, à travers une approche pédagogique et immersive.",
             contributions: [
-                "Autem vel eum iure reprehenderit qui in ea voluptate velit.",
-                "Esse quam nihil molestiae consequatur.",
-                "Vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.",
+                "Recherche et compilation d'informations sur les différentes valeurs et métiers de la DGFIP.",
+                "Mise en place d'une interface dynamique et ludique pour la présentation des métiers.",
+                "Création de mini-jeux et quiz pour rendre l'apprentissage interactif.",
             ],
             skills: skills.skills.filter(skill =>
-                ["MySQL", "Symfony", "Tailwind CSS", "PHP","API", "Team","Visual Basic"].includes(skill.name)
+                ["Angular", "TypeScript"].includes(skill.name)
             ),
             links: [
 
             ]
-        }
+        },
     ]
 };

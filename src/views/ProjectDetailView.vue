@@ -15,6 +15,7 @@
             :alt="project.title"
             class="w-full h-80 object-cover transition-all duration-300"
         />
+        <div v-if="project.images.length > 1">
         <button
             @click="prevImage"
             class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-indigo-600 text-white p-2 rounded-full shadow hover:bg-indigo-700"
@@ -27,6 +28,7 @@
         >
           ›
         </button>
+        </div>
       </div>
 
       <!-- Titre -->
@@ -77,30 +79,19 @@
           {{ $t('projects.links') }}
         </h2>
         <ul class="space-y-2">
-
+          <li v-for="(link, index) in project.links" :key="index">
             <a
-                :href="project.links[0]"
+                :href="link"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-indigo-600 dark:text-indigo-300 hover:underline break-all flex items-center gap-2"
             >
-              <i class="fab fa-gitlab"></i>
-              {{ $t('projects.sourceCode') }}
-            </a>
-
-          <li v-if="project.links.length > 1">
-            <a
-                :href="project.links[1]"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-indigo-600 dark:text-indigo-300 hover:underline break-all flex items-center gap-2"
-            >
-              <i class="fas fa-globe"></i>
-              {{ $t('projects.website') }}
+              <i :class="getIconClass(link)"></i>
+              {{ getLinkLabel(link) }}
             </a>
           </li>
-
         </ul>
+
       </div>
 
       <div v-else class="text-center text-gray-500 dark:text-gray-400 mt-10 text-lg">
@@ -149,4 +140,20 @@ const prevImage = () => {
         (currentImage.value - 1 + project.value.images.length) % project.value.images.length;
   }
 };
+
+const getIconClass = (link) => {
+  if (link.includes('github.com')) return 'fab fa-github';
+  if (link.includes('gitlab.')) return 'fab fa-gitlab';
+  if (link.includes('http')) return 'fas fa-globe';
+  return 'fas fa-link';
+};
+
+const getLinkLabel = (link) => {
+  if (link.includes('github.com') || link.includes('gitlab.')) return t('projects.sourceCode');
+  if (link.includes('http')) return t('projects.website');
+  return t('projects.link');
+};
+
+
+
 </script>

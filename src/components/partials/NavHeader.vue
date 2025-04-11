@@ -2,10 +2,11 @@
   <header>
     <nav class="bg-gray-800 p-4 w-full">
       <div class="container mx-auto flex flex-wrap justify-between items-center">
-        <div class="flex items-center">
+        <RouterLink to="/" class="flex items-center">
           <img src="/logos/logo.png" alt="Logo" class="h-12 w-21 mr-2">
           <div class="text-white text-lg font-bold">{{ $t('portfolio') }}</div>
-        </div>
+        </RouterLink>
+
         <div class="block lg:hidden">
           <button @click="toggleMenu" class="text-white focus:outline-none">
             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -15,13 +16,14 @@
         </div>
         <div :class="{'block': isMenuOpen, 'hidden': !isMenuOpen}" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto transition-all duration-300 ease-in-out">
           <div class="text-sm lg:flex-grow flex flex-col lg:flex-row ml-20">
-            <a
+            <RouterLink
                 v-for="link in links"
                 :key="link.name"
-                :href="link.l"
+                :to="link.l"
                 class="w-full text-gray-300 mr-4 flex items-center hover:text-white transition-colors duration-300"
             >
-              <i :class="['fas', `fa-${link.icon}`, 'mr-2', { 'text-white': link.isHovered }]"></i>
+
+            <i :class="['fas', `fa-${link.icon}`, 'mr-2', { 'text-white': link.isHovered }]"></i>
               <span
                   @mouseover="link.isHovered = true"
                   @mouseleave="link.isHovered = false"
@@ -30,7 +32,7 @@
               >
                 {{ $t(link.name) }}
               </span>
-            </a>
+            </RouterLink>
           </div>
           <div
               class="relative w-16 h-8 bg-gray-600 rounded-full flex items-center justify-between p-1 cursor-pointer"
@@ -53,6 +55,7 @@
 <script setup>
 import { reactive, ref } from "vue";
 import { i18n, locale } from '@/i18n';
+import { RouterLink } from "vue-router";
 
 const links = reactive([
   {name: "home", isHovered: false, l: "/", icon: "home"},
