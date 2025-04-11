@@ -61,7 +61,7 @@ const links = reactive([
   {name: "home", isHovered: false, l: "/", icon: "home"},
   {name: "myProjects", isHovered: false, l: "/projects", icon: "project-diagram"},
   {name: "skills", isHovered: false, l: "/skills", icon: "tools"},
-  {name: "aboutMe", isHovered: false, l: "/about", icon: "user"},
+  {name: "aboutMe", isHovered: false, l: "/aboutMe", icon: "user"},
 ]);
 
 function changeLanguage() {

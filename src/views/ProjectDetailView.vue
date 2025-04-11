@@ -33,27 +33,31 @@
 
       <!-- Titre -->
       <h1 class="text-4xl font-extrabold text-center text-indigo-800 dark:text-indigo-200">
-        {{ project.title }}
+        {{ $t('projects.' + project.id + '.title')  }}
       </h1>
 
       <!-- Contexte -->
-      <div v-if="project.context">
+      <div v-if="$t('projects.' + project.id + '.context')">
         <h2 class="text-2xl font-semibold text-indigo-700 dark:text-indigo-400 mb-2">
           {{ $t('projects.context') }}
         </h2>
         <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
-          {{ project.context }}
+          {{ $t('projects.' + project.id + '.context') }}
         </p>
       </div>
 
       <!-- Contributions -->
+
       <div v-if="project.contributions?.length">
         <h2 class="text-2xl font-semibold text-indigo-700 dark:text-indigo-400 mb-2">
           {{ $t('projects.myWork') }}
         </h2>
         <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
-          <li v-for="(task, index) in project.contributions" :key="index">{{ task }}</li>
+          <li v-for="(task, index) in project.contributions" :key="index">
+            {{ $t('projects.' + project.id + '.contributions.' + task) }}
+          </li>
         </ul>
+
       </div>
 
       <!-- Skills -->
