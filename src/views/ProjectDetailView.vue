@@ -77,7 +77,7 @@
           {{ $t('projects.links') }}
         </h2>
         <ul class="space-y-2">
-          <li v-if="project.links.length === 2">
+
             <a
                 :href="project.links[0]"
                 target="_blank"
@@ -87,8 +87,8 @@
               <i class="fab fa-gitlab"></i>
               {{ $t('projects.sourceCode') }}
             </a>
-          </li>
-          <li v-if="project.links.length === 2">
+
+          <li v-if="project.links.length > 1">
             <a
                 :href="project.links[1]"
                 target="_blank"
@@ -99,17 +99,7 @@
               {{ $t('projects.website') }}
             </a>
           </li>
-          <li v-else>
-            <a
-                :href="project.links[0]"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-indigo-600 dark:text-indigo-300 hover:underline break-all flex items-center gap-2"
-            >
-              <i class="fab fa-gitlab"></i>
-              {{ $t('projects.sourceCode') }}
-            </a>
-          </li>
+
         </ul>
       </div>
 

@@ -24,7 +24,7 @@ export const projects = {
             ),
             links: [
                 "https://iutbg-gitlab.iutbourg.univ-lyon1.fr/sae-but31/2024-25-web/gestion-tournois-aloas",
-
+                "https://aloas-tournoi.com/"
                 ]
         },
         {
