@@ -41,23 +41,23 @@
           class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-indigo-100 dark:border-gray-700 hover:border-indigo-200 dark:hover:border-indigo-500"
       >
         <div class="h-48 bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-gray-700 dark:to-indigo-900 flex items-center justify-center overflow-hidden">
-          <template v-if="project.logo">
+          <template v-if="Array.isArray(project.images) && project.images.length > 0">
             <img
-                :src="project.logo"
-                :alt="project.title"
-                class="h-full object-cover"
+                :src="project.images[0]"
+                :alt="$t('projects.' + project.id + '.title')"
+                class="h-full w-full object-cover"
             >
           </template>
           <template v-else>
     <span class="text-indigo-400 dark:text-indigo-300 text-lg font-medium">
-      {{ project.title }}
+      {{ $t('projects.' + project.id + '.title') }}
     </span>
           </template>
         </div>
 
         <div class="p-6">
-          <h3 class="text-xl font-bold mb-3 text-indigo-700 dark:text-indigo-300">{{ project.title }}</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-5">{{ project.description }}</p>
+          <h3 class="text-xl font-bold mb-3 text-indigo-700 dark:text-indigo-300">{{ $t('projects.' + project.id + '.title') }}</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-5">{{$t('projects.' + project.id + '.description') }}</p>
 
           <div class="mb-5">
             <h4 class="text-sm font-semibold mb-2 text-indigo-600 dark:text-indigo-400">{{ $t('projects.skillsUsed') }}:</h4>
