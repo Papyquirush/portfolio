@@ -13,6 +13,8 @@ const messages = {
         tools : 'Tools',
         backend : 'Backend',
         frontend : 'Frontend',
+        LinkedIn: 'LinkedIn',
+        GitHub: 'GitHub',
         "Office Suite" : 'Office Suite',
         "See my projects" : 'See my projects',
         "Not finished" : 'Not finished',
