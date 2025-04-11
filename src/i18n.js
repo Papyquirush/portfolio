@@ -18,7 +18,7 @@ const messages = {
         "Not finished" : 'Not finished',
         about : {
             contact:"I would love to connect with you! Feel free to reach out through LinkedIn, GitHub or via email.",
-            degree: "Degree",
+            degree: "Diplomas",
             me : "My name is Florian DUSSUD and I am in my 3rd year of a Computer Science Bachelor's degree in Bourg-en-Bresse. I am a junior web developer and I am passionate about web development. I have acquired skills in both front-end and back-end development, as well as a good knowledge of databases. I am always eager to learn new technologies.",
             exp1 : {
                 title: "Apprenticeship at Téréva (MartinBelaysoud)",
@@ -137,7 +137,7 @@ const messages = {
         "Not finished" : 'Pas encore terminé',
         about : {
             contact:"J'aimerais beaucoup échanger avec vous ! N'hésitez pas à me contacter via LinkedIn, GitHub ou par email.",
-            degree: "Diplôme",
+            degree: "Diplômes",
             me : "Je m'appelle Florian DUSSUD et je suis en 3ème année de BUT Informatique à Bourg-en-Bresse. Je suis développeur web junior et je suis passionné par le développement web. J'ai acquis des compétences en développement front-end et back-end, ainsi qu'une bonne connaissance des bases de données. Je suis toujours partant pour apprendre de nouvelles technologies.",
             exp1 : {
                 title: "Alternance à Téréva (MartinBelaysoud)",

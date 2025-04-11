@@ -5,9 +5,6 @@
         {{ $t('portfolio') }}
         <span class="text-indigo-600">.</span>
       </h1>
-      <p class="text-xl text-gray-600 mb-8">
-        {{ $t('Not finished') }}
-      </p>
       <div class="flex gap-4 justify-center">
         <RouterLink
             to="/projects"
