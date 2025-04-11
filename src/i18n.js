@@ -29,6 +29,9 @@ const messages = {
             "visitSite": "Visit website",
             "notFound": "Project not found",
             technologies: "Technologies",
+            links : "Links",
+            sourceCode: "Source code",
+            website: "Website",
         },
     },
     fr: {
@@ -56,7 +59,9 @@ const messages = {
             "visitSite": "Voir le site",
             "notFound": "Projet introuvable",
             technologies: "Technologies",
-
+            links : "Liens",
+            sourceCode: "Code source",
+            website: "Site web",
         },
     }
 };

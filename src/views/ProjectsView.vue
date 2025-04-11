@@ -41,11 +41,11 @@
           class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border border-indigo-100 dark:border-gray-700 hover:border-indigo-200 dark:hover:border-indigo-500"
       >
         <div class="h-48 bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-gray-700 dark:to-indigo-900 flex items-center justify-center overflow-hidden">
-          <template v-if="project.logo">
+          <template v-if="Array.isArray(project.images) && project.images.length > 0">
             <img
-                :src="project.logo"
+                :src="project.images[0]"
                 :alt="project.title"
-                class="h-full object-cover"
+                class="h-full w-full object-cover"
             >
           </template>
           <template v-else>
