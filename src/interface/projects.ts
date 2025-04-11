@@ -65,7 +65,7 @@ export const projects = {
                 ["MySQL", "Vue.js", "Tailwind CSS", "TypeScript", "API", "Team"].includes(skill.name)
             ),
             links: [
-
+                "https://github.com/Papyquirush/VueEchec",
             ]
         },
         {
@@ -76,38 +76,38 @@ export const projects = {
             images: [
                 "/logos/projects/coaster.png",
             ],
-            context: "Projet long réalisé dans le cadre d’un module SIG et data visualization.",
+            context: "Le projet Frissons & Virages est une application web dédiée aux passionnés de montagnes russes et de parcs. Elle a été développée dans le cadre de ma formation en développement web, avec pour objectif de créer une plateforme où les utilisateurs peuvent se renseigner sur les montagnes russes, voir les parcs à proximité grâce à la carte interractive ainsi que de voir le classement mondial des montagnes russes. Il se base sur une API publique qui fournit des données sur les montagnes russes et les parcs d'attractions.",
             contributions: [
-                "Dolore magna aliqua enim ad minim veniam.",
-                "Ut aliquip ex ea commodo consequat.",
-                "Duis aute irure dolor in reprehenderit in voluptate.",
+                "Mise en place de la BD et de l'algorithme d'import des coasters depuis l'API de CaptainCoaster.",
+                "Mise en place de l'affichage'des parcs sur une google map et de la liste de ses coasters quand on clique dessus.",
             ],
             skills: skills.skills.filter(skill =>
                 ["MySQL", "Symfony", "PHP", "Tailwind CSS", "TypeScript", "API", "Team"].includes(skill.name)
             ),
             links: [
-
+                "https://github.com/Papyquirush/VueEchec",
             ]
         },
         {
             id: "spotify",
             title: "Site utilisant l'API de Spotify",
             description:
-                "Création d'un site qui permet de mettre en favoris des sons et des artistes",
+                "Création d'un site qui permet de mettre en favoris des sons et des artistes grâce à l'API spotify",
             images: [
                 "/logos/projects/spotify.png",
             ],
-            context: "Projet réalisé dans le cadre d’un atelier API tierces.",
+            context: "Projet réalisé dans le cadre d’un cours, le but était d'utiliser l'API spotify pour permettre de lister les sons, les artiste, pouvoir faire une recherche et ajouter en favoris.",
             contributions: [
-                "Cupidatat non proident, sunt in culpa qui officia deserunt.",
-                "Mollit anim id est laborum.",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "Connexion à l'API de Spotify.",
+                "Listing des artistes et des sons.",
+                "Recherche d'artistes et de sons.",
+                "Gestion des favoris.",
             ],
             skills: skills.skills.filter(skill =>
                 ["MySQL", "PHP", "Symfony", "CSS", "API"].includes(skill.name)
             ),
             links: [
-
+                "https://github.com/Papyquirush/Tp_spot",
             ]
         },
         {
@@ -119,7 +119,7 @@ export const projects = {
                 "/logos/projects/transchlor2.png",
                 "/logos/projects/transchlor3.png",
             ],
-            context: "Site personnel pour présenter mes compétences, projets et parcours.",
+            context: "Transchlor est une application de simulation multiphysique du Transport des ions Chlorure dans les structures en béton armé (ponts, etc..), responsable de dégradations en fonction de l'exposition de l'ouvrage (données issues de capteurs ou expositions type : brouillard, soleil, montagne, mer, éclaboussures de voitures, eau stagnante etc..). Elle est utilisée pour prédire les dégradations au cours du temps (entre 20 et 30 ans) et prévoir les phases d'entretien et de réparation. L’objectif principal de ce travail est de recréer complètement l’interface en créant une interface web, de créer une base de données pour stocker les résultats des calculs et de pouvoir gérer différents utilisateurs. Notre travail n’est pas de finir ce projet mais de poser les bases pour que d’autres puissent reprendre et poursuivre ce projet sans tout recommencer.\n",
             contributions: [
                 "Autem vel eum iure reprehenderit qui in ea voluptate velit.",
                 "Esse quam nihil molestiae consequatur.",

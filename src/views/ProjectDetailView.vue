@@ -103,6 +103,10 @@
         </ul>
       </div>
 
+      <div v-else class="text-center text-gray-500 dark:text-gray-400 mt-10 text-lg">
+        {{ $t('projects.noLinks') }}
+      </div>
+
 
 
 

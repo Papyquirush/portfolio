@@ -32,6 +32,7 @@ const messages = {
             links : "Links",
             sourceCode: "Source code",
             website: "Website",
+            noLinks : "No links available as the project was done in a company and is internal.",
         },
     },
     fr: {
@@ -62,6 +63,7 @@ const messages = {
             links : "Liens",
             sourceCode: "Code source",
             website: "Site web",
+            noLinks : "Aucun lien disponible car le projet a été fait en entreprise et est en interne.",
         },
     }
 };
