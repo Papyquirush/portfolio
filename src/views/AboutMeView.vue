@@ -71,11 +71,12 @@
             <i class="fab fa-github h-6 w-6 mr-2"></i>
             <span class="font-semibold">{{ $t('GitHub') }}</span>
           </a>
-          <a href="mailto:floriandussud@gmail.com" class="flex items-center text-indigo-600 hover:text-indigo-700">
-            <i class="fas fa-envelope h-6 w-6 mr-2"></i>
-            <span class="font-semibold">floriandussud@gmail.com</span>
-          </a>
+
         </div>
+        <a href="mailto:floriandussud@gmail.com" class="text-center items-center text-indigo-600 hover:text-indigo-700">
+          <i class="fas fa-envelope h-6 w-6 mr-2"></i>
+          <span class="font-semibold">floriandussud@gmail.com</span>
+        </a>
       </section>
 
       <div class="flex gap-6 sm:gap-8 justify-center flex-wrap">
