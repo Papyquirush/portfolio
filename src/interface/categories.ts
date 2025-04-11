@@ -7,7 +7,7 @@ export const categories = {
             title: "backend",
             description: "Symfony, MySQL, Java...",
             skills: skills.skills.filter(skill =>
-                ["PHP", "MySQL", "Java", "Symfony", "C++", "CakePHP", "Angular"].includes(skill.name)
+                ["PHP", "MySQL", "Java", "Symfony", "C++", "CakePHP", "Angular","Visual Basic"].includes(skill.name)
             )
         },
         {

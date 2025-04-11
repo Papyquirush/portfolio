@@ -27,5 +27,6 @@ export const skills = {
         { name: "Docker", level: 15, logo: "/logos/tools/docker.svg" },
         { name: "Team", level: 100, logo: "/logos/team.svg" },
         { name: "API", level: 50, logo: "/logos/api.svg" },
+        { name: "Visual Basic", level: 5, logo: "/logos/back/vb.svg" },
         ]
 }
