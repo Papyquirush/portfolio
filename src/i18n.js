@@ -23,12 +23,12 @@ const messages = {
             degree: "Diplomas",
             me : "My name is Florian DUSSUD and I am in my 3rd year of a Computer Science Bachelor's degree in Bourg-en-Bresse. I am a junior web developer and I am passionate about web development. I have acquired skills in both front-end and back-end development, as well as a good knowledge of databases. I am always eager to learn new technologies.",
             exp1 : {
-                title: "Apprenticeship at Téréva (MartinBelaysoud)",
-                description: "Apprenticeship within the EBuisness team as a developer. I was responsible for resolving various tickets related to anomalies and enhancements on the company's applications assigned to me.",
+                title: "Apprenticeship at Téréva (Martin Belaysoud)",
+                description: "Apprenticeship within the EBuisness team as a developer. Resolving various tickets related to anomalies and enhancements on the company's applications.",
                 date : "From September 2024 to September 2025"            },
             exp2 : {
                 title: "Internship at DGFIP",
-                description: "Internship at the French public finance department (DGFIP) as a web developer. The goal was to create a playful and interactive tool to present DGFIP's values and career opportunities to young students and interns.",
+                description: "Internship at the French public finance department (DGFIP) as a web developer.  Responsible for creating a playful and interactive tool to present DGFIP's values and career opportunities to young students and interns.",
                 date: "From March 2023 to June 2023"
             },
             deg1 : {
@@ -142,13 +142,13 @@ const messages = {
             degree: "Diplômes",
             me : "Je m'appelle Florian DUSSUD et je suis en 3ème année de BUT Informatique à Bourg-en-Bresse. Je suis développeur web junior et je suis passionné par le développement web. J'ai acquis des compétences en développement front-end et back-end, ainsi qu'une bonne connaissance des bases de données. Je suis toujours partant pour apprendre de nouvelles technologies.",
             exp1 : {
-                title: "Alternance à Téréva (MartinBelaysoud)",
-                description: "Alternance au sein de l'équipe EBuisness en tant que développeur. Je devais résoudre les différents tickets d'anomalies et d'évolutions sur les applicatifs de l'entreprise qui m'étaient' affectés",
+                title: "Alternance à Téréva (Martin Belaysoud)",
+                description: "Alternance au sein de l'équipe EBuisness en tant que développeur. Résolution les différents tickets d'anomalies et d'évolutions sur les applicatifs de l'entreprise",
                 date : "De Septembre 2024 à Septembre 2025"
             },
             exp2 : {
                 title: "Stage à la DGFIP",
-                description: "Stage à la Direction Générale des Finances Publiques (DGFIP) en tant que développeur web. Le but était de créer un outil ludique et interactif pour présenter les valeurs et les métiers de la DGFIP aux jeunes collégiens, lycéens et stagiaires.",
+                description: "Stage à la Direction Générale des Finances Publiques (DGFIP) en tant que développeur web. En charge de créer un outil ludique et interactif pour présenter les valeurs et les métiers de la DGFIP aux jeunes collégiens, lycéens et stagiaires.",
                 date: "De Mars 2024 à Juillet 2024"
             },
             deg1 : {
